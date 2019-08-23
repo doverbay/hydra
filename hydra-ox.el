@@ -49,7 +49,7 @@
         (eq hydra-ox/export-scope 'subtree)
         hydra-ox/visible-only
         hydra-ox/body-only)
-       "As HTML buffer")
+   "As HTML buffer")
   ("h" (org-html-export-to-html
         hydra-ox/async-export
         (eq hydra-ox/export-scope 'subtree)
@@ -66,40 +66,74 @@
 
 (defhydra hydra-ox-latex (:color blue)
   "ox-latex"
-  ("L" org-latex-export-as-latex "As LaTeX buffer")
-  ("l" org-latex-export-to-latex "As LaTeX file")
-  ("p" org-latex-export-to-pdf "As PDF file")
-  ("o" (org-open-file (org-latex-export-to-pdf)) "As PDF file and open")
+  ("L" (org-latex-export-as-latex
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only) "As LaTeX buffer")
+  ("l" (org-latex-export-to-latex
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only) "As LaTeX file")
+  ("p" (org-latex-export-to-pdf
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only) "As PDF file")
+  ("o" (org-open-file (org-latex-export-to-pdf
+                       nil
+                       (eq hydra-ox/export-scope 'subtree)
+                       hydra-ox/visible-only
+                       hydra-ox/body-only)) "As PDF file and open")
   ("b" hydra-ox/body "back")
   ("q" nil "quit"))
 
 (defhydra hydra-ox-text (:color blue)
   "ox-text"
   ("A" (org-ascii-export-as-ascii
-        nil nil nil nil
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only
         '(:ascii-charset ascii))
-       "As ASCII buffer")
+   "As ASCII buffer")
 
   ("a" (org-ascii-export-to-ascii
-        nil nil nil nil
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only
         '(:ascii-charset ascii))
-       "As ASCII file")
+   "As ASCII file")
   ("L" (org-ascii-export-as-ascii
-        nil nil nil nil
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only
         '(:ascii-charset latin1))
-       "As Latin1 buffer")
+   "As Latin1 buffer")
   ("l" (org-ascii-export-to-ascii
-        nil nil nil nil
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only
         '(:ascii-charset latin1))
-       "As Latin1 file")
+   "As Latin1 file")
   ("U" (org-ascii-export-as-ascii
-        nil nil nil nil
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only
         '(:ascii-charset utf-8))
-       "As UTF-8 buffer")
+   "As UTF-8 buffer")
   ("u" (org-ascii-export-to-ascii
-        nil nil nil nil
+        hydra-ox/async-export
+        (eq hydra-ox/export-scope 'subtree)
+        hydra-ox/visible-only
+        hydra-ox/body-only
         '(:ascii-charset utf-8))
-       "As UTF-8 file")
+   "As UTF-8 file")
   ("b" hydra-ox/body "back")
   ("q" nil "quit"))
 
