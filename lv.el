@@ -33,6 +33,8 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
 (defgroup lv nil
   "The other echo area."
   :group 'minibuffer
@@ -81,6 +83,7 @@ Only the background color is significant."
         (if (setq buf (get-buffer " *LV*"))
             (switch-to-buffer buf 'norecord)
           (switch-to-buffer " *LV*" 'norecord)
+          (fundamental-mode)
           (set-window-hscroll lv-wnd 0)
           (setq window-size-fixed t)
           (setq mode-line-format nil)
